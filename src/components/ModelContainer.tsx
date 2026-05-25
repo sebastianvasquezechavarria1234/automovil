@@ -1,7 +1,6 @@
 import { type MutableRefObject, useRef } from 'react'
 import { useFrame, useThree, useLoader } from '@react-three/fiber'
-import { GLTFLoader } from 'three-stdlib'
-import { KTX2Loader } from 'three-stdlib'
+import { GLTFLoader, KTX2Loader, MeshoptDecoder } from 'three-stdlib'
 import { Group } from 'three'
 
 interface ModelContainerProps {
@@ -18,6 +17,7 @@ export default function ModelContainer({ progressRef }: ModelContainerProps) {
       .setTranscoderPath('/basis/')
       .detectSupport(gl)
     loader.setKTX2Loader(ktx2Loader)
+    loader.setMeshoptDecoder(MeshoptDecoder())
   })
 
   useFrame((state, delta) => {
