@@ -25,7 +25,7 @@ export default function ModelContainer({ progressRef }: ModelContainerProps) {
     groupRef.current.rotation.x = Math.sin(t * 0.25) * 0.015
     groupRef.current.rotation.z = Math.sin(t * 0.15) * 0.008
 
-    const scaleTarget = 0.4 + smoothProgress.current * 0.1
+    const scaleTarget = 0.02 + smoothProgress.current * 0.01
     groupRef.current.scale.setScalar(
       groupRef.current.scale.x + (scaleTarget - groupRef.current.scale.x) * 0.05
     )
