@@ -1,32 +1,55 @@
 import { Canvas } from '@react-three/fiber'
 import { Suspense } from 'react'
-import { Html, useProgress } from '@react-three/drei'
-import ModelViewer from './components/ModelViewer'
+import Scene from './components/Scene'
+import { useScrollAnimation } from './animations/useScrollAnimation'
+import HeroSection from './sections/HeroSection'
+import ThreeJSSection from './sections/ThreeJSSection'
+import ModelSection from './sections/ModelSection'
+import GSApSection from './sections/GSApSection'
+import LightingSection from './sections/LightingSection'
+import FinalSection from './sections/FinalSection'
 
-function Loader() {
-  const { progress } = useProgress()
-  return (
-    <Html center>
-      <div className="text-xl text-gray-600 font-mono">
-        {progress.toFixed(0)}% cargado
-      </div>
-    </Html>
-  )
-}
+export default function App() {
+  const { scrollProgress, containerRef } = useScrollAnimation()
 
-function App() {
   return (
-    <div className="w-full h-screen bg-gray-100">
-      <Suspense fallback={<Loader />}>
+    <div className="relative bg-[#0a0a0f]">
+      <div className="fixed inset-0 z-0">
         <Canvas
-          camera={{ position: [0, 2, 5], fov: 50 }}
-          gl={{ antialias: true }}
+          camera={{ position: [0, 1.8, 7], fov: 45 }}
+          gl={{ antialias: true, toneMapping: 3, toneMappingExposure: 1.2 }}
+          dpr={[1, 2]}
+          shadows
         >
-          <ModelViewer modelPath="/models/LittlestTokyo.glb" />
+          <Suspense fallback={null}>
+            <Scene progressRef={scrollProgress} />
+          </Suspense>
         </Canvas>
-      </Suspense>
+      </div>
+
+      <div
+        ref={containerRef}
+        className="relative z-10 pointer-events-none"
+      >
+        <div className="pointer-events-auto">
+          <HeroSection />
+        </div>
+        <div className="pointer-events-auto">
+          <ThreeJSSection />
+        </div>
+        <div className="pointer-events-auto">
+          <ModelSection />
+        </div>
+        <div className="pointer-events-auto">
+          <GSApSection />
+        </div>
+        <div className="pointer-events-auto">
+          <LightingSection />
+        </div>
+        <div className="pointer-events-auto">
+          <FinalSection />
+        </div>
+      </div>
     </div>
   )
 }
-
-export default App
