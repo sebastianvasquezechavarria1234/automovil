@@ -19,13 +19,16 @@ export default function ModelContainer({ progressRef }: ModelContainerProps) {
 
     const t = state.clock.getElapsedTime()
 
-    groupRef.current.position.y = Math.sin(t * 0.6) * 0.02
-    groupRef.current.position.x = Math.sin(t * 0.2) * 0.01
-    groupRef.current.rotation.y += 0.001 + smoothProgress.current * 0.003
-    groupRef.current.rotation.x = Math.sin(t * 0.25) * 0.005
-    groupRef.current.rotation.z = Math.sin(t * 0.15) * 0.003
+    groupRef.current.position.y = Math.sin(t * 0.6) * 0.15
+    groupRef.current.position.x = Math.sin(t * 0.2) * 0.06
+    groupRef.current.rotation.y += 0.003 + smoothProgress.current * 0.008
+    groupRef.current.rotation.x = Math.sin(t * 0.25) * 0.015
+    groupRef.current.rotation.z = Math.sin(t * 0.15) * 0.008
 
-    groupRef.current.scale.setScalar(0.03)
+    const scaleTarget = 0.4 + smoothProgress.current * 0.05
+    groupRef.current.scale.setScalar(
+      groupRef.current.scale.x + (scaleTarget - groupRef.current.scale.x) * 0.05
+    )
   })
 
   return <primitive ref={groupRef} object={scene} />
