@@ -1,6 +1,7 @@
 import { type MutableRefObject, useRef } from 'react'
-import { useFrame } from '@react-three/fiber'
-import { useGLTF } from '@react-three/drei'
+import { useFrame, useThree, useLoader } from '@react-three/fiber'
+import { GLTFLoader } from 'three-stdlib'
+import { KTX2Loader } from 'three-stdlib'
 import { Group } from 'three'
 
 interface ModelContainerProps {
@@ -8,9 +9,16 @@ interface ModelContainerProps {
 }
 
 export default function ModelContainer({ progressRef }: ModelContainerProps) {
+  const { gl } = useThree()
   const groupRef = useRef<Group>(null)
-  const { scene } = useGLTF('/models/facecap.glb')
   const smoothProgress = useRef(0)
+
+  const { scene } = useLoader(GLTFLoader, '/models/facecap.glb', (loader) => {
+    const ktx2Loader = new KTX2Loader()
+      .setTranscoderPath('/basis/')
+      .detectSupport(gl)
+    loader.setKTX2Loader(ktx2Loader)
+  })
 
   useFrame((state, delta) => {
     if (!groupRef.current) return
