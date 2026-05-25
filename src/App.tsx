@@ -16,7 +16,7 @@ export default function App() {
     <div className="relative bg-[#0a0a0f]">
       <div className="fixed inset-0 z-0">
         <Canvas
-          camera={{ position: [0, 2.5, 14], fov: 45 }}
+          camera={{ position: [0, 2.5, 12], fov: 45 }}
           gl={{ antialias: true, toneMapping: 3, toneMappingExposure: 1.2 }}
           dpr={[1, 2]}
           shadows
