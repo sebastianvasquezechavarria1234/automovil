@@ -12,7 +12,7 @@ export default function ModelContainer({ progressRef }: ModelContainerProps) {
   const groupRef = useRef<Group>(null)
   const smoothProgress = useRef(0)
 
-  const { scene } = useLoader(GLTFLoader, '/models/facecap.glb', (loader) => {
+  const { scene } = useLoader(GLTFLoader, '/models/RobotExpressive.glb', (loader) => {
     const ktx2Loader = new KTX2Loader()
       .setTranscoderPath('/basis/')
       .detectSupport(gl)
