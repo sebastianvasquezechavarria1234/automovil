@@ -3,12 +3,12 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { Vector3 } from 'three'
 
 const WAYPOINTS = [
-  { pos: new Vector3(0, 3, 30), target: new Vector3(0, 0, 0) },
-  { pos: new Vector3(8, 2.5, 25), target: new Vector3(0, 0.5, 0) },
-  { pos: new Vector3(3, 2, 20), target: new Vector3(0, 1, 0) },
-  { pos: new Vector3(-8, 3, 22), target: new Vector3(0, 0.5, 0) },
-  { pos: new Vector3(5, 4, 28), target: new Vector3(0, 0.3, 0) },
-  { pos: new Vector3(0, 2.5, 32), target: new Vector3(0, 0, 0) },
+  { pos: new Vector3(0, 1.5, 5), target: new Vector3(0, 0, 0) },
+  { pos: new Vector3(1.5, 1.2, 4), target: new Vector3(0, 0.5, 0) },
+  { pos: new Vector3(0.5, 1, 3), target: new Vector3(0, 1, 0) },
+  { pos: new Vector3(-1.5, 1.5, 3.5), target: new Vector3(0, 0.5, 0) },
+  { pos: new Vector3(1, 2, 4.5), target: new Vector3(0, 0.3, 0) },
+  { pos: new Vector3(0, 1.2, 5.5), target: new Vector3(0, 0, 0) },
 ]
 
 interface CameraControllerProps {
@@ -28,7 +28,7 @@ function getWaypoint(progress: number) {
 
 export default function CameraController({ progressRef }: CameraControllerProps) {
   const { camera } = useThree()
-  const currentPos = useRef(new Vector3(0, 3, 30))
+  const currentPos = useRef(new Vector3(0, 1.5, 5))
   const currentTarget = useRef(new Vector3(0, 0, 0))
   const smoothProgress = useRef(0)
 
