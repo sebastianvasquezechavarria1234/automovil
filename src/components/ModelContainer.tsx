@@ -9,7 +9,7 @@ interface ModelContainerProps {
 
 export default function ModelContainer({ progressRef }: ModelContainerProps) {
   const groupRef = useRef<Group>(null)
-  const { scene } = useGLTF('/models/LittlestTokyo.glb')
+  const { scene } = useGLTF('/models/facecap.glb')
   const smoothProgress = useRef(0)
 
   useFrame((state, delta) => {
